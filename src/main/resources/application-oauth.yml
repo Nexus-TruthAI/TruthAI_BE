@@ -5,8 +5,8 @@ spring:
         registration:
           # 구글 로그인 추가
           google:
-            client-id: "9261837093-r43ag2okg7k6abqlgs4874ivcdkb3m93.apps.googleusercontent.com"
-            client-secret: "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"
+            client-id: ${OAUTH_CLIENT_ID}
+            client-secret: ${OAUTH_CLIENT_SECRET}
             scope:
               - email
               - profile
