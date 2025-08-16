@@ -24,8 +24,13 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
                 .authorizeHttpRequests(auth -> auth
+                        // api 테스트 위해서 모든 권한 열어둠
                         .anyRequest().permitAll()
+                        // 실제 배포 시 swagger랑 로그인만 열어둠
+//                        .requestMatchers("/api/auth", "/swagger-ui/**").permitAll()
+//                        .anyRequest().authenticated()
                 )
+
                 .csrf(AbstractHttpConfigurer::disable)
                 .headers((headers -> headers
                         .frameOptions(HeadersConfigurer.FrameOptionsConfig::disable))

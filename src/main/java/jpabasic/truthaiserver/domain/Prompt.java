@@ -50,5 +50,8 @@ public class Prompt extends BaseEntity{
         answers.add(answer);
     }
 
+    public void assignFolder(Folder folder) {
+        this.folder = folder;
+    }
 
 }

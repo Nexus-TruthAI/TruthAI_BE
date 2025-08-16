@@ -34,7 +34,7 @@ public class PromptController {
 
     @PostMapping("/create-best")
     @Operation(summary="최적화 프롬프트 생성")
-    public ResponseEntity<Map<String,Object>> savePrompt(@RequestBody LlmRequestDto dto,@AuthenticationPrincipal User user){
+    public ResponseEntity<Map<String,Object>> savePrompt(@RequestBody LlmRequestDto dto,@AuthenticationPrincipal(expression = "user") User user){
         Long promptId=promptService.saveOriginalPrompt(dto,user);
         String optimizedPrompt=promptService.getOptimizedPrompt(dto,promptId);
 

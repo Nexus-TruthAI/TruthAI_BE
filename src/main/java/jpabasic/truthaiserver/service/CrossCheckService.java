@@ -1,7 +1,5 @@
 package jpabasic.truthaiserver.service;
 
-//import jakarta.transaction.Transactional;
-
 import org.springframework.transaction.annotation.Transactional;
 import jpabasic.truthaiserver.domain.Answer;
 import jpabasic.truthaiserver.domain.Claim;
@@ -242,13 +240,6 @@ public class CrossCheckService {
     @Transactional(readOnly = true)
     public List<CrossCheckListDto> getCrossChecklist(Long promptId) {
         List<Answer> answers;
-
-//        if (promptId != null) {
-//            // 특정 promptId만 필터링
-//            answers = answerRepository.findByPromptId(promptId);
-//        } else {
-//            // 전체
-//            answers = answerRepository.findAll();
 //        }
         answers = answerRepository.findByPromptId(promptId);
 
