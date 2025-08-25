@@ -38,6 +38,7 @@ public class SourcesService {
                 .orElseThrow(() -> new BusinessException(ANSWER_NOT_FOUND));
 
         List<LLMResponseDto.SourceResponseDto> sources=dto.sources();
+        log.debug("sources" + dto.toString());
         List<SourcesDto> sourcesDtos = new ArrayList<>();
 
         for (LLMResponseDto.SourceResponseDto s : sources) {

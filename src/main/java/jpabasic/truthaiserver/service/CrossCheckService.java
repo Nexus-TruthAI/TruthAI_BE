@@ -159,8 +159,8 @@ public class CrossCheckService {
     private int calculateHallucinationLevel(double score, double sourceQuality) {
         // 점수 기반 기본 레벨
         int baseLevel;
-        if (score >= 0.8) baseLevel = 0;        // 낮음
-        else if (score >= 0.5) baseLevel = 1;   // 중간
+        if (score >= 0.7) baseLevel = 0;        // 낮음
+        else if (score >= 0.4) baseLevel = 1;   // 중간
         else baseLevel = 2;                      // 높음
 
         // 출처 품질에 따른 보정
@@ -189,7 +189,7 @@ public class CrossCheckService {
         // 해당 모델의 출처들 조회
         List<Source> sources = sourceRepository.findByAnswerId(modelAnswer.getId());
         
-        if (sources.isEmpty()) return 0.0;
+        if (sources.isEmpty()) return 0.5;
 
         // 1) URL 유효성 점수 (기존 evalSource 로직 활용)
         double urlValidityScore = evalSourceValidity(sources);
@@ -318,25 +318,25 @@ public class CrossCheckService {
     /**
      * URL 유효성 평가 (중복 제거, HEAD 시도)
      */
-    private double evalSource(List<Claim> claims) {
-        Set<String> urls = new LinkedHashSet<>();
-        for (Claim c : claims) {
-            List<Source> sources = c.getSources();
-            if (sources == null) continue;
-            for (Source s : sources) {
-                if (s.getSourceUrl() != null && !s.getSourceUrl().isBlank()) {
-                    urls.add(s.getSourceUrl().trim());
-                }
-            }
-        }
-        if (urls.isEmpty()) return 0.0;
-
-        long ok = 0;
-        for (String u : urls) {
-            if (isReachableURL(u)) ok++;
-        }
-        return ok / (double) urls.size();
-    }
+//    private double evalSource(List<Claim> claims) {
+//        Set<String> urls = new LinkedHashSet<>();
+//        for (Claim c : claims) {
+//            List<Source> sources = c.getSources();
+//            if (sources == null) continue;
+//            for (Source s : sources) {
+//                if (s.getSourceUrl() != null && !s.getSourceUrl().isBlank()) {
+//                    urls.add(s.getSourceUrl().trim());
+//                }
+//            }
+//        }
+//        if (urls.isEmpty()) return 0.0;
+//
+//        long ok = 0;
+//        for (String u : urls) {
+//            if (isReachableURL(u)) ok++;
+//        }
+//        return ok / (double) urls.size();
+//    }
 
     private boolean isReachableURL(String urlStr) {
         try {

@@ -22,10 +22,6 @@ public class Source {
     @Column(name = "source_summary", columnDefinition = "TEXT")
     private String sourceSummary;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "claim_id")
-    private Claim claim;
-
     //prompt or answer와 매핑
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="answer_id")

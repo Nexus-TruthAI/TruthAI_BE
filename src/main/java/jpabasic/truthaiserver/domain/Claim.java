@@ -34,6 +34,6 @@ public class Claim {
     private Answer answer;
 
 
-    @OneToMany(mappedBy = "claim", cascade = CascadeType.ALL)
-    private List<Source> sources = new ArrayList<>();
+//    @OneToMany(mappedBy = "claim", cascade = CascadeType.ALL)
+//    private List<Source> sources = new ArrayList<>();
 }
