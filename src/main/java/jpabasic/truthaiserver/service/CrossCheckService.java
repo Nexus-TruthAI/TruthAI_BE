@@ -164,7 +164,7 @@ public class CrossCheckService {
         else baseLevel = 2;                      // 높음
 
         // 출처 품질에 따른 보정
-        if (sourceQuality >= 0.8) {
+        if (sourceQuality >= 0.5) {
             // 출처가 품질이 좋으면 레벨을 1단계 낮춤 (최소 0)
             return Math.max(0, baseLevel - 1);
         } else if (sourceQuality <= 0.3) {
@@ -464,9 +464,10 @@ public class CrossCheckService {
         List<Answer> answers = answerRepository.findByPromptId(promptId);
         
         if (answers.isEmpty()) {
-            return new CrossCheckResponseDto(
-                    null, null, null, null, null, null
-            );
+//            return new CrossCheckResponseDto(
+//                    null, null, null, null, null, null
+//            );
+            return crossCheckPrompt(promptId);
         }
 
         // 프롬프트 정보로 coreTitle 설정

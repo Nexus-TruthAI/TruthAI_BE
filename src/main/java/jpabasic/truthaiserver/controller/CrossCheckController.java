@@ -31,8 +31,8 @@ public class CrossCheckController {
 
     @GetMapping("/{promptId}")
     @Operation(
-            summary = "교차검증 결과 리스트",
-            description = "프롬프트 ID에 해당하는 교차검증 결과 리스트를 조회합니다."
+            summary = "환각 결과 리스트",
+            description = "프롬프트 ID에 해당하는 환각 검증 결과 리스트를 조회합니다."
     )
     public CrossCheckResponseDto getCrossCheckList(
             @PathVariable("promptId") Long promptId
